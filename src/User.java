@@ -1,11 +1,11 @@
-public class Main {
+public class User {
     private String userName;
     private String companyName;
     private int yrOfJoining;
     private String email;
     private String emailPassword;
 
-    public Main(String userName, String companyName, int yrOfJoining) {
+    public User(String userName, String companyName, int yrOfJoining) {
         this.userName = userName;
         this.companyName = companyName;
         this.yrOfJoining = yrOfJoining;
@@ -16,7 +16,13 @@ public class Main {
     }
 
     public static void main(String[] args) {
+        User user = new User(user = "")
+    }
 
+    private String generatePassword() {
+
+
+        return "";
     }
 
     private String generateEmailID() {
@@ -27,13 +33,7 @@ public class Main {
         sb.append("@");
         sb.append(getCompanyName());
         sb.append(".com");*/
-        return String.format("%s_%d@%s.com", getUserName(), getYrOfJoining(), getCompanyName());
-    }
-
-    private String generatePassword() {
-
-
-        return "";
+        return String.format("%s_%d@%s.com", getUserName().toLowerCase(), getYrOfJoining(), getCompanyName().toLowerCase());
     }
 
     public String getUserName() {
