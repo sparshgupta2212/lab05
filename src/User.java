@@ -1,3 +1,6 @@
+
+
+import java.util.Scanner;
 public class User {
     private String userName;
     private String companyName;
@@ -15,14 +18,38 @@ public class User {
 
     }
 
-    public static void main(String[] args) {
-        User user = new User(user = "")
-    }
 
     private String generatePassword() {
+        StringBuilder sb = new StringBuilder();
+        sb.append(generateRandomCharacter());
+        for (int i = 0; i < 4; i++) {
+            sb.append(generateRandomIntegerFromLimit(10));
+        }
+        sb.append(getFirst5CharacterFromUserName());
+        return sb.toString();
+    }
 
+    private int generateRandomIntegerFromLimit(int limit) {
+        return (int) (Math.random() * limit);
+    }
 
-        return "";
+    private char generateRandomCharacter() {
+        return (char) ('a' + generateRandomIntegerFromLimit(26));
+
+    }
+
+    private String getFirst5CharacterFromUserName() {
+        if (getUserName().length() < 5) {
+            StringBuilder sb = new StringBuilder();
+            int diffrence = 5 - getUserName().length();
+            for (int i = 0; i < diffrence; i++) {
+                sb.append("0");
+            }
+            return sb.toString();
+        } else {
+            return getUserName().substring(0, 5);
+        }
+
     }
 
     private String generateEmailID() {
@@ -35,6 +62,7 @@ public class User {
         sb.append(".com");*/
         return String.format("%s_%d@%s.com", getUserName().toLowerCase(), getYrOfJoining(), getCompanyName().toLowerCase());
     }
+
 
     public String getUserName() {
         return userName;
@@ -74,5 +102,17 @@ public class User {
 
     public void setEmailPassword(String emailPassword) {
         this.emailPassword = emailPassword;
+    }
+}
+
+class Entry {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        String userName = scanner.nextLine();
+        String companyName = scanner.nextLine();
+        int yearOfJoining = scanner.nextInt();
+        User user = new User(userName, companyName, yearOfJoining);
+        System.out.println("Email: " + user.getEmail() + "\nPassword: " + user.getEmailPassword());
+        scanner.close();
     }
 }
